@@ -1,9 +1,9 @@
 let countdown;
 let isTimerRunning = false;
 let isWorkSession = true;
-const express = require('express');
-const app = express();
-const port = 3000;
+// const express = require('express');
+// const app = express();
+// const port = 3000;
 
 function startTimer(duration) {
   clearInterval(countdown);
@@ -11,7 +11,7 @@ function startTimer(duration) {
   const endTime = startTime + duration * 1000;
   displayTimeLeft(duration);
 
-  sendMessage(false);
+  //sendMessage(false);
   countdown = setInterval(() => {
     const secondsLeft = Math.round((endTime - Date.now()) / 1000);
     if (secondsLeft < 0) {
@@ -24,7 +24,7 @@ function startTimer(duration) {
     }
     displayTimeLeft(secondsLeft);
   }, 1000);
-  sendMessage(true);
+  //sendMessage(true);
 }
 
 function displayTimeLeft(seconds) {
@@ -74,15 +74,15 @@ document.getElementById('todo-input').addEventListener('keyup', function(event) 
   }
 });
 
-function sendMessage(command){
+// function sendMessage(command){
 
-    app.get('/motor-movement', (req, res) => {
-        res.send(command); 
-    });
+//     app.get('/motor-movement', (req, res) => {
+//         res.send(command); 
+//     });
 
-    app.listen(port, () => {
-    console.log(`Server listening at http://localhost:${port}`);
-    });
+//     app.listen(port, () => {
+//     console.log(`Server listening at http://localhost:${port}`);
+//     });
 
-}
+// }
 
