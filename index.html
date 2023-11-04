@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="styles.css">
+<title>PomoTodo</title>
+</head>
+<body>
+
+<div class="app-container">
+  <div class="pomodoro-container">
+    <header>
+      <h1>Pomodoro</h1>
+    </header>
+    <div id="pomodoro-timer" class="timer">
+      <div id="timer-display" class="timer-display">25:00</div>
+      <button id="start-btn" class="timer-btn">Start</button>
+    </div>
+  </div>
+
+  <div id="todo-container" class="todo-container">
+    <header>
+      <h2>Tasks</h2>
+    </header>
+    <div id="todo-list" class="todo-list">
+      <input type="text" id="todo-input" class="todo-input" placeholder="Enter a task">
+      <button onclick="addTask()" class="todo-btn">Add Task</button>
+      <ul id="tasks" class="tasks"></ul>
+    </div>
+  </div>
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
