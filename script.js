@@ -1,9 +1,6 @@
 let countdown;
 let isTimerRunning = false;
 let isWorkSession = true;
-// const express = require('express');
-// const app = express();
-// const port = 3000;
 
 function startTimer(duration) {
   clearInterval(countdown);
@@ -11,7 +8,7 @@ function startTimer(duration) {
   const endTime = startTime + duration * 1000;
   displayTimeLeft(duration);
 
-  //sendMessage(false);
+  sendMessage('stop');
   countdown = setInterval(() => {
     const secondsLeft = Math.round((endTime - Date.now()) / 1000);
     if (secondsLeft < 0) {
@@ -24,7 +21,7 @@ function startTimer(duration) {
     }
     displayTimeLeft(secondsLeft);
   }, 1000);
-  //sendMessage(true);
+  sendMessage('start');
 }
 
 function displayTimeLeft(seconds) {
@@ -74,15 +71,17 @@ document.getElementById('todo-input').addEventListener('keyup', function(event) 
   }
 });
 
-// function sendMessage(command){
+function sendCommand(path) {
+  const esp32IP = 'http://100.64.74.123';
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+          console.log('Response:', this.responseText);
+      }
+  };
+  xhttp.open("GET", esp32IP + path, true);
+  xhttp.send();
+}
 
-//     app.get('/motor-movement', (req, res) => {
-//         res.send(command); 
-//     });
 
-//     app.listen(port, () => {
-//     console.log(`Server listening at http://localhost:${port}`);
-//     });
-
-// }
 

@@ -1,8 +1,10 @@
 #include <WiFi.h>
 #include <HTTPClient.h>
+#include <WebServer.h>
 
 const char* ssid = "Xiao Izzy (SM-G950W6332)";
 const char* password = "spy0961";
+WebServer server(80);
 const int TRIG_PIN = 33;
 const int ECHO_PIN = 35;
 const int MOTOR_IN1 = 17;
@@ -22,7 +24,19 @@ void connectToWiFi() {
     delay(500);
     Serial.print(".");
   }
-  Serial.println("Connected to Wi-Fi");
+
+  server.on("start", HTTP_GET, []() {
+    server.send(200, "text/plain", "Motor started");
+    goVroom();
+  });
+
+  // Route to handle stopping the motor
+  server.on("stop", HTTP_GET, []() {
+    server.send(200, "text/plain", "Motor stopped");
+    digitalWrite(motorPin, LOW); // Stop the motor
+  });
+  server.begin();
+  
 }
 
 void goVroom(){
