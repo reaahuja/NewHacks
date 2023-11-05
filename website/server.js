@@ -5,9 +5,9 @@ const port = 3000;
 app.use(express.static('public'));
 
 app.get('/motor-movement', (req, res) => {
-    res.send(command); 
+    res.send("test");
 });
 
 app.listen(port, () => {
-console.log(`Server listening at http://localhost:${port}`);
+    console.log(`Server listening at http://localhost:${port}`);
 });
