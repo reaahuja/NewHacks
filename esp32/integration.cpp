@@ -36,7 +36,7 @@ void connectToWiFi() {
   Serial.println("\nConnected to Wi-Fi");
 
   server.on("/start", HTTP_GET, []() {
-    server.send(200, "text/plain", "Motor started");
+    server.send(300, "text/plain", "Motor started");
     isStarted = true;
   });
 
@@ -109,7 +109,7 @@ void loop() {
 
   if(WiFi.status() == WL_CONNECTED) {
     HTTPClient http;
-    http.begin("http://localhost:${3000}"); 
+    http.begin("http://localhost:$3000"); 
     int httpCode = http.GET();
 
     if(httpCode == 300) {
@@ -120,11 +120,11 @@ void loop() {
       }else{
         delay(1000); 
         if (Serial.avaliable() > 0){
-        char command = Serial.read(); 
+        string command = Serial.read(); 
 
         if(command == 'start'){
             myServo.write(90);
-            isStarted = ture;
+            isStarted = true;
         }else if(command == 'stop'){
             checkPhotoresistor();
         }
